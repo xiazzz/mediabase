@@ -60,6 +60,7 @@
 <div class="container">
 
     <h1>Podcasts</h1>
+
     <table class="table table-striped table-bordered">
 
         <thead>
