@@ -2,10 +2,10 @@ package com.example.mediabase;
 
 import com.example.mediabase.moviesui.MovieClient;
 import com.example.mediabase.moviesui.MoviesInitialList;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import com.example.mediabase.podcastsUI.PodcastClient;
 import com.example.mediabase.podcastsUI.PodcastsInitialList;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
