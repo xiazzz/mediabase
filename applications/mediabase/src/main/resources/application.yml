@@ -1,6 +1,6 @@
 spring:
   application:
-    name: moviefun
+    name: mediabase
 
   mvc.view:
     prefix: /WEB-INF/
