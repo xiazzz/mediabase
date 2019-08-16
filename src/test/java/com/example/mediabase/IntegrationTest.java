@@ -30,7 +30,7 @@ public class IntegrationTest {
 
     private String url(String path) {
         String baseUrl = "http://localhost:8080/";
-        String envUrl = System.getenv("MOVIEFUN_URL");
+        String envUrl = System.getenv("MEDIABASE_URL");
 
         if (envUrl != null && !envUrl.isEmpty()) {
             baseUrl = envUrl;

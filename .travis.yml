@@ -36,3 +36,4 @@ jobs:
       password: $CF_PASSWORD
       organization: $CF_ORG
       space: test
+      skip_ssl_validation: true
