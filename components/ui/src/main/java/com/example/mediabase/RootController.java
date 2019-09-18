@@ -1,10 +1,9 @@
 package com.example.mediabase;
 
-import com.example.mediabase.movies.MoviesBean;
-import com.example.mediabase.movies.MoviesInitialList;
-import com.example.mediabase.podcasts.Podcast;
-import com.example.mediabase.podcasts.PodcastInitialList;
-import com.example.mediabase.podcasts.PodcastRepository;
+import com.example.mediabase.moviesui.MovieClient;
+import com.example.mediabase.moviesui.MoviesInitialList;
+import com.example.mediabase.podcastsui.PodcastInitialList;
+import com.example.mediabase.podcastsui.PodcastClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,13 +11,13 @@ import java.util.Map;
 
 @Controller
 public class RootController {
-    private MoviesBean moviesBean;
-    private PodcastRepository podcastRepository;
+    private MovieClient movieClient;
+    private PodcastClient podcastRepository;
     private MoviesInitialList moviesInitialList;
     private PodcastInitialList podcastInitialList;
 
-    public RootController(MoviesBean moviesBean, PodcastRepository podcastRepository, MoviesInitialList moviesInitialList, PodcastInitialList podcastInitialList) {
-        this.moviesBean = moviesBean;
+    public RootController(MovieClient movieClient, PodcastClient podcastRepository, MoviesInitialList moviesInitialList, PodcastInitialList podcastInitialList) {
+        this.movieClient = movieClient;
         this.podcastRepository = podcastRepository;
         this.moviesInitialList = moviesInitialList;
         this.podcastInitialList = podcastInitialList;
@@ -32,9 +31,9 @@ public class RootController {
     @GetMapping("/setup")
     public String setupDatabase(Map<String, Object> model) {
 
-        moviesInitialList.asList().forEach(moviesBean::addMovie);
+        moviesInitialList.asList().forEach(movieClient::create);
 
-        model.put("movies", moviesBean.getMovies());
+        model.put("movies", movieClient.getAll());
 
         podcastInitialList.asList().forEach(podcastRepository::save);
 

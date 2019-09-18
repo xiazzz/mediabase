@@ -1,11 +1,12 @@
 package com.example.mediabase.podcasts;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Map;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/podcasts")
 public class PodcastController {
     private PodcastRepository podcastRepository;
 
@@ -13,10 +14,15 @@ public class PodcastController {
         this.podcastRepository = podcastRepository;
     }
 
-    @GetMapping("/podcasts")
-    public String allPodcasts(Map<String, Object> model) {
-        model.put("podcasts", podcastRepository.findAll() );
-        return "podcasts";
+    @PostMapping
+    public ResponseEntity<Podcast> save(@RequestBody Podcast podcast) {
+
+        podcastRepository.save(podcast);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @GetMapping()
+    public Iterable<Podcast> read() {
+        return podcastRepository.findAll();
+    }
 }
