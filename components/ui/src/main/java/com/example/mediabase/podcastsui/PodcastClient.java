@@ -30,7 +30,7 @@ public class PodcastClient {
         restOperations.postForEntity(podcastsURL, podcast, PodcastUI.class);
     }
 
-    @HystrixCommand(fallbackMethod="getAllFallback",commandProperties = {
+    @HystrixCommand(fallbackMethod="findAllFallback",commandProperties = {
             @HystrixProperty(name="execution.isolation.strategy", value="SEMAPHORE")
     })
     public List<PodcastUI> findAll() {
